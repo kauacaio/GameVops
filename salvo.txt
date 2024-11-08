@@ -19,7 +19,7 @@ const jump = () => {
         }, 500);
     }
 };
-                      
+
 const startGame = () => {
     isGameOver = false;
     score = 0;

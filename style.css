@@ -69,6 +69,11 @@
     cursor: pointer;
 }
 
+.gamevops {
+    position: center;
+    background-color: #87CEEB;
+    
+}
 
 @keyframes jump {
     0% {
@@ -101,3 +106,14 @@
         right: 100%;
     }
 }
+
+.play-btn {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
