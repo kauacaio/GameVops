@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo Minado</title>
+    
+</head>
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+}
+
+h1 {
+    color: #333;
+}
+
+#game-info {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.tile {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.tile.revealed {
+    background-color: #fff;
+}
+
+.tile.mine {
+    background-color: red;
+}
+
+.tile.number {
+    background-color: #f0f0f0;
+}
+
+.tile.revealed.number {
+    color: #333;
+}
+
+.tile:hover {
+    background-color: #ddd;
+}
+
+#level, #timer, #score {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+</style>
+
+<body>
+    <h1>Campo Minado</h1>
+    <div id="game-info">
+        <p>Nível: <span id="level">1</span></p>
+        <p>Tempo restante: <span id="timer">60</span></p>
+        <p>Pontuação: <span id="score">0</span></p>
+    </div>
+    <div id="board"></div>
+
+    <script src="minado.js"></script>
+</body>
+</html>
