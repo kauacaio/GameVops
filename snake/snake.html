@@ -4,27 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Cobrinha</title>
-   
 </head>
 
 <style>
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #1a1a1a; /* Fundo escuro para destacar o neon */
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-    color: #000000;
+    color: #00ffcc; /* Verde Neon */
+    font-size: 3rem;
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; /* Efeito de brilho */
+}
+
+#recorde {
+    font-size: 1.2rem;
+    color: #ff00ff; /* Rosa Neon */
+    font-weight: bold;
+    text-shadow: 0 0 5px #ff00ff; /* Brilho para o recorde */
 }
 
 #gameCanvas {
-    background-color: rgb(0, 0, 0);
+    background-color: #222; /* Preto com tom mais escuro */
     display: block;
     margin: 20px auto;
+    border: 2px solid #00ffcc; /* Borda neon verde */
+    box-shadow: 0 0 15px #00ffcc, 0 0 25px #00ffcc; /* Efeito de brilho neon */
 }
 
+#gameMessage {
+    font-size: 24px;
+    color: #fff;
+    padding: 10px;
+    text-shadow: 0 0 10px #ff00ff; /* Efeito de brilho */
+}
 
 </style>
 
@@ -32,7 +54,7 @@ h1 {
     <h1>VopSnake</h1>
     <p id="recorde">Recorde: 0</p>
     <canvas id="gameCanvas" width="600" height="600"></canvas>
-    <div id="gameMessage" style="font-size: 24px; color: white; padding: 10px;"></div> <!-- Mensagens do jogo -->
+    <div id="gameMessage"></div> <!-- Mensagens do jogo -->
 
     <script src="snake.js"></script>
 </body>

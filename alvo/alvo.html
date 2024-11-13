@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Tiro ao Alvo</title>
+    <title>ClickAQuI</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Fonte moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <style>
     /* Estilos gerais */
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Orbitron', sans-serif;
         text-align: center;
-        background-color: #f4f4f9;
+        background-color: #1a1a1a; /* Fundo escuro para destacar o neon */
+        margin: 0;
+        padding: 0;
     }
 
     h1 {
-        color: #333;
+        color: #00ffcc; /* Neon Verde */
+        font-size: 3rem;
+        padding: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; /* Efeito de brilho */
     }
 
     #game-info {
         font-size: 18px;
         margin-bottom: 20px;
+        font-weight: 500;
+        color: #fff;
+        text-shadow: 0 0 5px #00ffcc;
     }
 
     #gameArea {
         position: relative;
         width: 600px;
         height: 400px;
-        margin: 0 auto;
-        background-color: #ddd;
-        border: 2px solid #333;
+        margin: 20px auto;
+        background-color: #222;
+        border: 2px solid #00ffcc;
         overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 15px #00ffcc, 0 0 25px #00ffcc; /* Brilho Neon */
     }
 
     .target {
@@ -39,7 +53,7 @@
         width: 50px;
         height: 50px;
         cursor: pointer;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .target.triangle {
@@ -47,22 +61,26 @@
         height: 0;
         border-left: 25px solid transparent;
         border-right: 25px solid transparent;
-        border-bottom: 50px solid yellow;
-        transform: rotate(0deg);
+        border-bottom: 50px solid #ffcc00; /* Amarelo Neon */
+        box-shadow: 0 0 10px #ffcc00;
     }
 
     .target.square {
-        background-color: green;
+        background-color: #00ff00; /* Verde Neon */
+        box-shadow: 0 0 10px #00ff00;
     }
 
     .target.ball {
         border-radius: 50%;
-        background-color: blue;
+        background-color: #ff00ff; /* Rosa Neon */
+        box-shadow: 0 0 10px #ff00ff;
     }
 
     #level, #timer, #score {
         font-size: 20px;
         font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 5px #00ffcc;
     }
 
     #level-up {
@@ -72,6 +90,8 @@
         padding: 20px;
         border-radius: 10px;
         display: none;
+        animation: fadeIn 1s ease;
+        box-shadow: 0 0 15px #28a745; /* Neon verde claro */
     }
 
     #game-over {
@@ -81,30 +101,46 @@
         padding: 20px;
         border-radius: 10px;
         display: none;
+        animation: fadeIn 1s ease;
+        box-shadow: 0 0 15px #dc3545; /* Neon vermelho */
     }
 
     button {
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
-        background-color: #007bff;
-        color: white;
+        background-color: #00ffcc; /* Neon Verde */
+        color: #1a1a1a;
         border: none;
         border-radius: 5px;
         margin-top: 20px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 0 10px #00ffcc;
     }
 
     button:hover {
-        background-color: #0056b3;
+        background-color: #009c99;
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #00ffcc;
     }
 
     .hidden {
         display: none;
     }
+
+    /* Animação de fade-in */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 </style>
 
 <body>
-    <h1>Jogo de Tiro ao Alvo</h1>
+    <h1>ClickAQuI</h1>
     <div id="game-info">
         <p>Pontuação: <span id="score">0</span></p>
         <p>Tempo restante: <span id="timer">60</span></p>

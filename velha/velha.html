@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Velha</title>
-   
 </head>
 
 <style>
-    /* styles.css */
+/* styles.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f7f7f7;
+    background-color: #1a1a1a; /* Fundo escuro */
+    color: #fff;
 }
 
 .game-container {
     text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #222;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Brilho neon */
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 20px;
+    color: #00ffcc; /* Verde Neon */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; /* Brilho neon no título */
 }
 
 .board {
@@ -42,25 +50,41 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
-    border: 2px solid #000;
+    background-color: #333; /* Fundo escuro das células */
+    border: 2px solid #00ffcc; /* Borda verde neon */
     font-size: 2em;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .cell:hover {
-    background-color: #f0f0f0;
+    background-color: #444; /* Cor mais clara no hover */
+    box-shadow: 0 0 10px #00ffcc; /* Efeito neon ao passar o mouse */
 }
 
 .status {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-bottom: 20px;
+    color: #ff00ff; /* Rosa Neon */
+    text-shadow: 0 0 10px #ff00ff; /* Brilho neon na mensagem de status */
 }
 
 button {
     padding: 10px 20px;
-    font-size: 1em;
+    font-size: 1.2em;
     cursor: pointer;
+    background-color: #ff00ff; /* Botão rosa neon */
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8); /* Brilho neon no botão */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff3399; /* Tom mais claro de rosa */
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.9); /* Efeito de brilho mais forte */
 }
 
 </style>
