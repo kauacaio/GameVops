@@ -3,95 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dashboard.css">
-    <title>GameVops</title>
+    <title>MarioVops</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo Global */
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0d0d0d; /* Fundo escuro */
+            background: linear-gradient(45deg, #111, #222);
+            animation: bgAnimate 10s ease-in-out infinite;
+        }
+
+        @keyframes bgAnimate {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Painel */
+        .dashboard {
+            text-align: center;
+            background: rgba(20, 20, 20, 0.95); /* Transparência escura */
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
+            max-width: 450px;
+            width: 100%;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Título */
+        .dashboard h1 {
+            font-size: 3em;
+            color: #00e5ff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
+        }
+
+        /* Descrição */
+        .dashboard p {
+            font-size: 1.1em;
+            color: #aaa;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Pontuação mais alta */
+        .high-score {
+            font-size: 1.3em;
+            color: #00e5ff;
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+        }
+
+        .high-score p {
+            font-size: 2.3em;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        /* Botão de iniciar */
+        .start-btn {
+            margin-top: 40px;
+            background: #00e5ff;
+            color: #121212;
+            font-size: 1.3em;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+            text-decoration: none;
+        }
+
+        .start-btn:hover {
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Rodapé */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        /* Animação de moeda flutuante sutil */
+        .coin {
+            font-size: 2.5em;
+            color: #00e5ff;
+            animation: float 3s ease-in-out infinite;
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+    </style>
 </head>
-
-<style>
-
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f8ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.dashboard {
-    text-align: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-}
-
-.dashboard h1 {
-    font-size: 2.5em;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.dashboard p {
-    font-size: 1.2em;
-    color: #666;
-}
-
-.high-score {
-    margin-top: 30px;
-    font-size: 1.5em;
-}
-
-.high-score p {
-    font-size: 2em;
-    font-weight: bold;
-    color: #27ae60;
-}
-
-.start-btn {
-    margin-top: 40px;
-    background-color: #3498db;
-    color: white;
-    font-size: 1.5em;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.start-btn:hover {
-    background-color: #2980b9;
-}
-
-.footer {
-    margin-top: 40px;
-    font-size: 0.9em;
-    color: #aaa;
-}
-
-</style>
-
 <body>
     <div class="dashboard">
-        <h1> MarioVops!</h1>
-        <p>Prepare-se para pular os obstáculos e alcançar a maior pontuação!</p>
+        <div class="coin">💰</div> <!-- Animação sutil da moeda -->
+        <h1>MarioVops</h1>
+        <p>Prepare-se para pular obstáculos e desafiar o melhor tempo!</p>
 
         <div class="high-score">
             <h2>Pontuação mais alta:</h2>
-            <p>0</p> <!-- Aqui você pode dinamicamente mostrar a pontuação mais alta -->
+            <p>0</p>
         </div>
 
-        <button class="start-btn">Iniciar Jogo</button>
+        <a href="mario.html" class="start-btn">Jogar</a>
 
         <div class="footer">
             <p>Jogo criado por Kauã Lima</p>
         </div>
     </div>
-
-    <script src="dashboard.js"></script>
 </body>
 </html>
