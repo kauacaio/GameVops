@@ -17,8 +17,6 @@
             overflow: hidden;
             background: linear-gradient(135deg, #0f0f0f, #141414, #1e1e1e);
             animation: bgAnimation 12s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
         }
 
         /* Animação de fundo */
@@ -31,41 +29,6 @@
             }
         }
 
-        /* Efeito do céu estrelado */
-        .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .star {
-            position: absolute;
-            background-color: #fff;
-            border-radius: 50%;
-            animation: blink 2s infinite;
-        }
-
-        /* Animação das estrelas piscando */
-        @keyframes blink {
-            0%, 100% {
-                opacity: 0.8;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        /* Criando estrelas com diferentes tamanhos e posições */
-        .star1 { width: 2px; height: 2px; animation-duration: 3s; }
-        .star2 { width: 3px; height: 3px; animation-duration: 4s; }
-        .star3 { width: 1px; height: 1px; animation-duration: 2s; }
-        .star4 { width: 4px; height: 4px; animation-duration: 5s; }
-        
         /* Container principal do painel */
         .dashboard {
             text-align: center;
@@ -78,14 +41,7 @@
             backdrop-filter: blur(12px);
             position: relative;
             border: 2px solid rgba(0, 229, 255, 0.2);
-            opacity: 0;
-            animation: slideIn 0.8s ease-out forwards;
-        }
-
-        /* Animação de entrada do painel */
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+            overflow: hidden;
         }
 
         /* Animação de moeda flutuante */
@@ -166,21 +122,6 @@
             transform: translateY(3px);
         }
 
-        /* Estilo do link de "Voltar" */
-        a {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 1.2em;
-            color: #00e5ff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #ff5722;
-        }
-
         /* Rodapé */
         .footer {
             margin-top: 40px;
@@ -200,28 +141,9 @@
     </style>
 </head>
 <body>
-    <!-- Céu estrelado -->
-    <div class="stars">
-        <!-- Estrelas em diferentes posições e tamanhos -->
-        <div class="star star1" style="top: 10%; left: 25%;"></div>
-        <div class="star star2" style="top: 20%; left: 50%;"></div>
-        <div class="star star3" style="top: 40%; left: 70%;"></div>
-        <div class="star star4" style="top: 50%; left: 15%;"></div>
-        <div class="star star1" style="top: 70%; left: 80%;"></div>
-        <div class="star star2" style="top: 90%; left: 10%;"></div>
-        <div class="star star3" style="top: 30%; left: 80%;"></div>
-        <div class="star star4" style="top: 60%; left: 40%;"></div>
-        <div class="star star1" style="top: 80%; left: 65%;"></div>
-        <div class="star star2" style="top: 10%; left: 90%;"></div>
-        <!-- Adicione mais estrelas conforme necessário -->
-    </div>
-
-    <!-- Link de Voltar -->
     <div>
         <a href="gamevops.html">Voltar</a>
     </div>
-
-    <!-- Dashboard principal -->
     <div class="dashboard">
         <div class="coin">💰</div> <!-- Moeda flutuante animada -->
         <h1>MarioVops</h1>

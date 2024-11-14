@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVops</title>
+    <title>GameVops - Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset de margens e padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Corpo da página */
-        body {
+        html, body {
+            height: 100%;
             font-family: 'Orbitron', sans-serif;
-            background-color: #000; /* Fundo preto */
+            background-color: #0d0d0d;
             color: #fff;
+            animation: moveBackground 15s linear infinite;
             overflow: hidden;
-            animation: moveBackground 10s linear infinite; /* Animação do fundo */
         }
 
-        /* Animação de movimento suave do fundo */
         @keyframes moveBackground {
             0% {
                 background-position: 0% 50%;
@@ -32,87 +30,91 @@
             }
         }
 
-        /* Cabeçalho */
         header {
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+            background-color: rgba(0, 0, 0, 0.7);
             text-align: center;
-            padding: 30px;
-            position: relative;
+            padding: 40px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
         }
 
         header h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: #fff;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            background: linear-gradient(45deg, #00b0ff, #ff0066); /* Gradiente na logo */
+            background: linear-gradient(45deg, #00b0ff, #ff0066);
             background-clip: text;
             -webkit-background-clip: text;
-            animation: colorChange 5s ease infinite; /* Animação de troca de cores no texto */
+            animation: colorChange 5s ease infinite;
         }
 
         @keyframes colorChange {
-            0% {
-                background: linear-gradient(45deg, #00b0ff, #ff0066);
-            }
-            50% {
-                background: linear-gradient(45deg, #00ffcc, #ffcc00);
-            }
-            100% {
-                background: linear-gradient(45deg, #ff0066, #ff00ff);
-            }
+            0% { background: linear-gradient(45deg, #00b0ff, #ff0066); }
+            50% { background: linear-gradient(45deg, #00ffcc, #ffcc00); }
+            100% { background: linear-gradient(45deg, #ff0066, #ff00ff); }
         }
 
-        /* Estilo principal */
         main {
-            padding: 40px 20px;
+            padding-top: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+            gap: 30px;
+            max-width: 90%;
+            margin: 0 auto;
         }
 
-        /* Container dos jogos */
         .game-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             width: 100%;
+            margin: 0 auto;
+            height: 80%;
+            padding: 25px;
+        
         }
 
-        /* Card dos jogos */
         .game-card {
-            background-color: #262626;
-            padding: 50px;
-            border-radius: 12px;
+            background-color: rgba(30, 30, 30, 0.8);
+            padding: 40px;
+            border-radius: 15px;
             text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 176, 255, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 176, 255, 0.4);
             max-width: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
         .game-card h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 20px;
             color: #12d685;
-            font-weight: 500;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Estilo dos links (botões) */
         .game-card a {
-            padding: 18px 36px;
+            padding: 20px 40px;
             background-color: #00b0ff;
             border: none;
             border-radius: 10px;
             color: #121212;
             cursor: pointer;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             letter-spacing: 1px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
-            background: linear-gradient(45deg, #00b0ff, #ff0066); /* Gradiente no botão */
+            background: linear-gradient(45deg, #00b0ff, #ff0066);
             background-size: 400% 400%;
-            animation: gradientButton 5s ease infinite; /* Animação suave de gradiente nos botões */
+            animation: gradientButton 5s ease infinite;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         @keyframes gradientButton {
@@ -129,28 +131,69 @@
 
         .game-card a:hover {
             background-color: #0094cc;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
         .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 20px rgba(0, 176, 255, 0.6);
+            transform: translateY(-12px);
+            box-shadow: 0 8px 35px rgba(0, 176, 255, 0.7);
         }
 
-        /* Rodapé */
         footer {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             width: 100%;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
         }
 
         footer p {
             font-size: 1rem;
             color: #bbb;
             letter-spacing: 1px;
+        }
+
+        /* Animations for header and cards */
+        .card-animation {
+            animation: bounceInUp 1s ease-out;
+        }
+
+        @keyframes bounceInUp {
+            0% { transform: translateY(300px); opacity: 0; }
+            60% { transform: translateY(-30px); opacity: 1; }
+            80% { transform: translateY(10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+
+            .game-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .game-card a {
+                font-size: 1.2rem;
+                padding: 16px 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .game-card h2 {
+                font-size: 1.4rem;
+            }
+
+            .game-card a {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
         }
 
     </style>
@@ -161,52 +204,46 @@
     </header>
     <main>
         <div class="game-container">
-            <div class="game-card" id="game1">
+            <div class="game-card card-animation">
                 <h2>MarioVops</h2>
                 <a href="dashboard.html">Jogar</a>
             </div>
-            <div class="game-card" id="game2">
+            <div class="game-card card-animation">
                 <h2>VopSnake</h2>
                 <a href="snake/board.html">Jogar</a>
             </div>
-            <div class="game-card" id="game3">
+            <div class="game-card card-animation">
                 <h2>Minado</h2>
                 <a href="minado/minado.html">Jogar</a>
             </div>
-            <div class="game-card" id="game4">
+            <div class="game-card card-animation">
                 <h2>ClickAQuI</h2>
                 <a href="alvo/board.html">Jogar</a>
             </div>
-            <div class="game-card" id="game5">
+            <div class="game-card card-animation">
                 <h2>Velhaaa</h2>
                 <a href="velha/board.html">Jogar</a>
             </div>
-            <div class="game-card" id="game6">
+            <div class="game-card card-animation">
+                <h2>Atarinho</h2>
+                <a href="atari/board.html">Jogar</a>
+            </div>
+            <div class="game-card card-animation">
+                <h2>Bird</h2>
+                <a href="bird/dash.html">Jogar</a>
+            </div>
+            <div class="game-card card-animation">
+                <h2>Nave</h2>
+                <a href="nave/board.html">Jogar</a>
+            </div>
+            <div class="game-card card-animation">
                 <h2>Em breve</h2>
                 <a href="">Jogar</a>
             </div>
-
-            <div class="game-card" id="game6">
+            <div class="game-card card-animation">
                 <h2>Em breve</h2>
                 <a href="">Jogar</a>
             </div>
-
-            <div class="game-card" id="game6">
-                <h2>Em breve</h2>
-                <a href="">Jogar</a>
-            </div>
-
-            <div class="game-card" id="game6">
-                <h2>Em breve</h2>
-                <a href="">Jogar</a>
-            </div>
-
-            <div class="game-card" id="game6">
-                <h2>Em breve</h2>
-                <a href="">Jogar</a>
-            </div>
-
-            
         </div>
     </main>
     <footer>
