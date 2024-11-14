@@ -15,111 +15,215 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            background-color: #0d0d0d; /* Fundo escuro */
-            background: linear-gradient(45deg, #111, #222);
-            animation: bgAnimate 10s ease-in-out infinite;
+            background: linear-gradient(135deg, #0f0f0f, #141414, #1e1e1e);
+            animation: bgAnimation 12s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes bgAnimate {
-            0% {
+        /* Animação de fundo */
+        @keyframes bgAnimation {
+            0%, 100% {
                 background-position: 0% 50%;
             }
             50% {
                 background-position: 100% 50%;
             }
-            100% {
-                background-position: 0% 50%;
+        }
+
+        /* Efeito do céu estrelado */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        /* Animação das estrelas piscando */
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
             }
         }
 
-        /* Painel */
+        /* Criando estrelas com diferentes tamanhos e posições */
+        .star1 { width: 2px; height: 2px; animation-duration: 3s; }
+        .star2 { width: 3px; height: 3px; animation-duration: 4s; }
+        .star3 { width: 1px; height: 1px; animation-duration: 2s; }
+        .star4 { width: 4px; height: 4px; animation-duration: 5s; }
+        
+        /* Container principal do painel */
         .dashboard {
             text-align: center;
-            background: rgba(20, 20, 20, 0.95); /* Transparência escura */
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
-            max-width: 450px;
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 480px;
             width: 100%;
-            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 50px rgba(0, 229, 255, 0.4);
+            backdrop-filter: blur(12px);
+            position: relative;
+            border: 2px solid rgba(0, 229, 255, 0.2);
+            opacity: 0;
+            animation: slideIn 0.8s ease-out forwards;
         }
 
-        /* Título */
-        .dashboard h1 {
+        /* Animação de entrada do painel */
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animação de moeda flutuante */
+        .coin {
             font-size: 3em;
             color: #00e5ff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
-        }
-
-        /* Descrição */
-        .dashboard p {
-            font-size: 1.1em;
-            color: #aaa;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        /* Pontuação mais alta */
-        .high-score {
-            font-size: 1.3em;
-            color: #00e5ff;
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
-        }
-
-        .high-score p {
-            font-size: 2.3em;
-            font-weight: bold;
-            margin: 10px 0 0;
-        }
-
-        /* Botão de iniciar */
-        .start-btn {
-            margin-top: 40px;
-            background: #00e5ff;
-            color: #121212;
-            font-size: 1.3em;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-            text-decoration: none;
-        }
-
-        .start-btn:hover {
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
-            transform: scale(1.05);
-        }
-
-        /* Rodapé */
-        .footer {
-            margin-top: 30px;
-            font-size: 0.85em;
-            color: #666;
-        }
-
-        /* Animação de moeda flutuante sutil */
-        .coin {
-            font-size: 2.5em;
-            color: #00e5ff;
-            animation: float 3s ease-in-out infinite;
+            animation: floatCoin 3s ease-in-out infinite;
             position: absolute;
-            top: -35px;
+            top: -45px;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
+        @keyframes floatCoin {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        /* Estilo do título */
+        .dashboard h1 {
+            font-size: 3.5em;
+            color: #00e5ff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 30px rgba(0, 229, 255, 0.8);
+        }
+
+        /* Estilo da descrição */
+        .dashboard p {
+            font-size: 1.2em;
+            color: #bbb;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Estilo da pontuação mais alta */
+        .high-score {
+            font-size: 1.5em;
+            color: #00e5ff;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+            margin-bottom: 25px;
+        }
+
+        .high-score p {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0 0;
+            letter-spacing: 2px;
+        }
+
+        /* Estilo do botão de iniciar */
+        .start-btn {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #00e5ff, #0097a7);
+            color: #121212;
+            font-size: 1.4em;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.4s ease;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.3);
+            text-decoration: none;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.8), 0 0 40px rgba(0, 229, 255, 0.6);
+        }
+
+        .start-btn:active {
+            transform: translateY(3px);
+        }
+
+        /* Estilo do link de "Voltar" */
+        a {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2em;
+            color: #00e5ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ff5722;
+        }
+
+        /* Rodapé */
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #888;
+            opacity: 0.8;
+        }
+
+        .footer a {
+            color: #00e5ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+    <!-- Céu estrelado -->
+    <div class="stars">
+        <!-- Estrelas em diferentes posições e tamanhos -->
+        <div class="star star1" style="top: 10%; left: 25%;"></div>
+        <div class="star star2" style="top: 20%; left: 50%;"></div>
+        <div class="star star3" style="top: 40%; left: 70%;"></div>
+        <div class="star star4" style="top: 50%; left: 15%;"></div>
+        <div class="star star1" style="top: 70%; left: 80%;"></div>
+        <div class="star star2" style="top: 90%; left: 10%;"></div>
+        <div class="star star3" style="top: 30%; left: 80%;"></div>
+        <div class="star star4" style="top: 60%; left: 40%;"></div>
+        <div class="star star1" style="top: 80%; left: 65%;"></div>
+        <div class="star star2" style="top: 10%; left: 90%;"></div>
+        <!-- Adicione mais estrelas conforme necessário -->
+    </div>
+
+    <!-- Link de Voltar -->
+    <div>
+        <a href="gamevops.html">Voltar</a>
+    </div>
+
+    <!-- Dashboard principal -->
     <div class="dashboard">
-        <div class="coin">💰</div> <!-- Animação sutil da moeda -->
+        <div class="coin">💰</div> <!-- Moeda flutuante animada -->
         <h1>MarioVops</h1>
         <p>Prepare-se para pular obstáculos e desafiar o melhor tempo!</p>
 
@@ -131,7 +235,7 @@
         <a href="mario.html" class="start-btn">Jogar</a>
 
         <div class="footer">
-            <p>Jogo criado por Kauã Lima</p>
+            <p>Jogo criado por <a href="https://github.com/kaualima" target="_blank">Kauã Lima</a></p>
         </div>
     </div>
 </body>

@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes fade-out {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.3); }
+  }
+
+  @keyframes drop {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .gem-matched {
+    animation: fade-out 0.3s ease-out;
+  }
+
+  .gem-new {
+    animation: drop 0.3s ease-in;
+  }
+
+  .gem-selected {
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  .gem-swapping {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .score-pop {
+    animation: pop 0.3s ease-out;
+  }
+}
