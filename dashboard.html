@@ -1,164 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarioVops</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilo Global */
-        body {
+        /* Reset básico */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #0f0f0f, #141414, #1e1e1e);
-            animation: bgAnimation 12s ease-in-out infinite;
-        }
-
-        /* Animação de fundo */
-        @keyframes bgAnimation {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        /* Container principal do painel */
-        .dashboard {
-            text-align: center;
-            background: rgba(20, 20, 20, 0.85);
-            border-radius: 25px;
-            padding: 50px;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 10px 50px rgba(0, 229, 255, 0.4);
-            backdrop-filter: blur(12px);
+            background: #1c1c1c;
+            color: #fff;
             position: relative;
-            border: 2px solid rgba(0, 229, 255, 0.2);
-            overflow: hidden;
         }
 
-        /* Animação de moeda flutuante */
-        .coin {
-            font-size: 3em;
-            color: #00e5ff;
-            animation: floatCoin 3s ease-in-out infinite;
+        /* Logo e texto */
+        .logo {
             position: absolute;
-            top: -45px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
+            font-size: 4.5em;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0 0 15px #00ff00;
+            animation: colorChange 4s infinite alternate;
         }
 
-        @keyframes floatCoin {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
+        @keyframes colorChange {
+            0% { color: #00ff00; }
+            50% { color: #ff9900; }
+            100% { color: #ff00ff; }
+        }
+
+        /* Estilo do quadro central */
+        .game-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.5);
+            z-index: 1;
+            width: 350px;
+            margin-top: 80px;
+        }
+
+        h2, h3 {
+            font-weight: 400;
+            color: #00ff00;
+        }
+
+        .game-container a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff9900, #ff00ff);
+            border-radius: 5px;
+            transition: background 0.4s ease, transform 0.3s ease;
+        }
+
+        .game-container a:hover {
+            background: linear-gradient(45deg, #00ff00, #ff9900);
+            transform: scale(1.1);
+        }
+
+        /* Animação da cobrinha */
+        .snake {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            animation: snakeMove 5s infinite linear;
+        }
+
+        @keyframes snakeMove {
+            0% {
+                transform: translateX(-20vw) translateY(-20vh);
             }
             50% {
-                transform: translateX(-50%) translateY(-15px);
+                transform: translateX(80vw) translateY(50vh);
+            }
+            100% {
+                transform: translateX(-20vw) translateY(90vh);
             }
         }
 
-        /* Estilo do título */
-        .dashboard h1 {
-            font-size: 3.5em;
-            color: #00e5ff;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 30px rgba(0, 229, 255, 0.8);
-        }
-
-        /* Estilo da descrição */
-        .dashboard p {
-            font-size: 1.2em;
-            color: #bbb;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            opacity: 0.9;
-        }
-
-        /* Estilo da pontuação mais alta */
-        .high-score {
-            font-size: 1.5em;
-            color: #00e5ff;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
-            margin-bottom: 25px;
-        }
-
-        .high-score p {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin: 10px 0 0;
-            letter-spacing: 2px;
-        }
-
-        /* Estilo do botão de iniciar */
-        .start-btn {
-            margin-top: 40px;
-            background: linear-gradient(135deg, #00e5ff, #0097a7);
-            color: #121212;
-            font-size: 1.4em;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.4s ease;
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 30px rgba(0, 229, 255, 0.3);
-            text-decoration: none;
-        }
-
-        .start-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.8), 0 0 40px rgba(0, 229, 255, 0.6);
-        }
-
-        .start-btn:active {
-            transform: translateY(3px);
-        }
-
-        /* Rodapé */
-        .footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #888;
-            opacity: 0.8;
-        }
-
-        .footer a {
-            color: #00e5ff;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <div>
-        <a href="gamevops.html">Voltar</a>
+    <!-- Logo -->
+    <div class="logo">MarioVops</div>
+
+    <!-- Conteúdo principal -->
+    <div class="game-container">
+        <h2></h2>
+        <h3> Mario Falido !</h3>
+        <a href="mario.html">Começar o Jogo</a>
     </div>
-    <div class="dashboard">
-        <div class="coin">💰</div> <!-- Moeda flutuante animada -->
-        <h1>MarioVops</h1>
-        <p>Prepare-se para pular obstáculos e desafiar o melhor tempo!</p>
 
-        <div class="high-score">
-            <h2>Pontuação mais alta:</h2>
-            <p>0</p>
-        </div>
-
-        <a href="mario.html" class="start-btn">Jogar</a>
-
-        <div class="footer">
-            <p>Jogo criado por <a href="https://github.com/kaualima" target="_blank">Kauã Lima</a></p>
-        </div>
-    </div>
+    <!-- Cobrinha passando pela tela -->
+    <div class="snake" style="top: 20%; left: 10%;"></div>
+    <div class="snake" style="top: 50%; left: 70%;"></div>
+    <div class="snake" style="top: 80%; left: 30%;"></div>
+    <div class="snake" style="top: 10%; left: 80%;"></div>
 </body>
 </html>
