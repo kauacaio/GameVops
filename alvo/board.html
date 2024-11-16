@@ -3,167 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickAQuI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tetris</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Reset básico */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
         }
 
+        /* Fundo futurista */
         body {
+            height: 100vh;
+            background: linear-gradient(135deg, #2b2b2b, #000000, #003366);
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            background: #0d0d0d;
             color: #fff;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
         }
 
-        /* Logo com animação de cor */
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 5em;
-            font-weight: 700;
-            color: #00f2ff;
-            animation: colorChange 4s infinite alternate;
-        }
-
-        @keyframes colorChange {
-            0% { color: #00f2ff; }
-            50% { color: #00e5e5; }
-            100% { color: #ff00d4; }
-        }
-
-        /* Contêiner do jogo */
-        .game-container {
-            text-align: center;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
-            z-index: 1;
-            width: 60%;
-        }
-
-        h2 {
-            font-weight: 700;
-            font-size: 2em;
-            color: #00e5e5;
-            margin-bottom: 10px;
-        }
-
-        h3 {
-            font-weight: 400;
-            font-size: 1.3em;
-            color: #b3f5f5;
-            margin-bottom: 30px;
-        }
-
-        /* Botão com efeito futurista */
-        .game-container a {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.5em;
-            color: #fff;
-            text-decoration: none;
-            background: linear-gradient(45deg, #00f2ff, #ff00d4);
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.7), 0 0 20px rgba(255, 0, 212, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-container a::before {
+        /* Efeito de partículas no fundo */
+        body::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 200%;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(0, 242, 255, 0.2), rgba(255, 0, 212, 0.2));
-            transition: transform 0.5s;
-            transform: skewX(30deg);
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent);
+            animation: moveBg 10s linear infinite;
         }
 
-        .game-container a:hover::before {
-            left: 100%;
+        @keyframes moveBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+
+        /* Logo futurista com brilho 3D */
+        .logo {
+            font-size: 5em;
+            font-weight: 700;
+            color: #00ffcc;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00ffcc, 0 0 40px #00ffcc, 0 0 80px #00ff00;
+            animation: glow 2s infinite alternate;
+            position: absolute;
+            top: 10%;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff00, 0 0 80px #00ff00; }
+            50% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff0099, 0 0 80px #ff0099; }
+            100% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff00, 0 0 80px #00ff00; }
+        }
+
+        /* Container de conteúdo */
+        .game-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+            width: 350px;
+            position: relative;
+            animation: containerGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Animação de brilho da caixa */
+        @keyframes containerGlow {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.7); }
+            100% { box-shadow: 0 0 60px rgba(0, 255, 255, 1); }
+        }
+
+        h2, h3 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #00ffcc;
+        }
+
+        /* Botões futuristas */
+        .game-container a {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 1.4em;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff0066, #00b0ff);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-container a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffcc;
+            opacity: 0.3;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease-in-out;
         }
 
         .game-container a:hover {
-            box-shadow: 0 0 20px rgba(0, 242, 255, 1), 0 0 30px rgba(255, 0, 212, 0.7);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
         }
 
-        /* Formas animadas */
-        .shape {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            opacity: 0.6;
-            animation: moveShape 10s infinite linear;
-        }
-
-        .shape.circle {
-            border-radius: 50%;
-            background-color: #ff00d4;
-        }
-
-        .shape.square {
-            background-color: #00f2ff;
-        }
-
-        .shape.triangle {
-            width: 0;
-            height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-bottom: 24px solid #00e5e5;
-        }
-
-        /* Animação das formas */
-        @keyframes moveShape {
-            0% {
-                transform: translate(-50px, -50px) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translate(100vw, 100vh) rotate(180deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50px, -50px) rotate(360deg);
-                opacity: 0.3;
-            }
+        .game-container a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
     </style>
 </head>
 <body>
+
     <!-- Logo -->
     <div class="logo">ClickAQuI</div>
 
-    <!-- Conteúdo principal -->
+    <!-- Container de Jogo -->
     <div class="game-container">
-        <h2>Objetivos</h2>
-        <h3>Clicar no máximo de itens possíveis e atingir o maior nível possível</h3>
-        <a href="alvo.html">Começar o Jogo</a>
+        <h2>Bem-vindo ao ClikAqui</h2>
+        <h3>Clique o maximo que puder!</h3>
+        <a href="alvo.html">Jogar Agora</a>
     </div>
 
-    <!-- Formas animadas no fundo -->
-    <div class="shape circle" style="top: 20%; left: 15%;"></div>
-    <div class="shape square" style="top: 40%; left: 60%;"></div>
-    <div class="shape triangle" style="top: 80%; left: 30%;"></div>
-    <div class="shape circle" style="top: 10%; left: 70%;"></div>
-    <div class="shape square" style="top: 60%; left: 10%;"></div>
-    <div class="shape triangle" style="top: 50%; left: 50%;"></div>
 </body>
 </html>
-si

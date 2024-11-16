@@ -1,111 +1,144 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Velha</title>
+    <title>Velhaaa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Fundo futurista */
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #2b2b2b, #000000, #003366);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Efeito de partículas no fundo */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent);
+            animation: moveBg 10s linear infinite;
+        }
+
+        @keyframes moveBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+
+        /* Logo futurista com brilho 3D */
+        .logo {
+            font-size: 5em;
+            font-weight: 700;
+            color: #00ffcc;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00ffcc, 0 0 40px #00ffcc, 0 0 80px #00ff00;
+            animation: glow 2s infinite alternate;
+            position: absolute;
+            top: 10%;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff00, 0 0 80px #00ff00; }
+            50% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff0099, 0 0 80px #ff0099; }
+            100% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff00, 0 0 80px #00ff00; }
+        }
+
+        /* Container de conteúdo */
+        .game-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+            width: 350px;
+            position: relative;
+            animation: containerGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Animação de brilho da caixa */
+        @keyframes containerGlow {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.7); }
+            100% { box-shadow: 0 0 60px rgba(0, 255, 255, 1); }
+        }
+
+        h2, h3 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #00ffcc;
+        }
+
+        /* Botões futuristas */
+        .game-container a {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 1.4em;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff0066, #00b0ff);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-container a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffcc;
+            opacity: 0.3;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .game-container a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+        }
+
+        .game-container a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    </style>
 </head>
-
-<style>
-/* styles.css */
-body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #1a1a1a; /* Fundo escuro */
-    color: #fff;
-}
-
-.game-container {
-    text-align: center;
-    border-radius: 15px;
-    padding: 20px;
-    background-color: #222;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Brilho neon */
-}
-
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #00ffcc; /* Verde Neon */
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; /* Brilho neon no título */
-}
-
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 5px;
-    margin: 20px 0;
-}
-
-.cell {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333; /* Fundo escuro das células */
-    border: 2px solid #00ffcc; /* Borda verde neon */
-    font-size: 2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.cell:hover {
-    background-color: #444; /* Cor mais clara no hover */
-    box-shadow: 0 0 10px #00ffcc; /* Efeito neon ao passar o mouse */
-}
-
-.status {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #ff00ff; /* Rosa Neon */
-    text-shadow: 0 0 10px #ff00ff; /* Brilho neon na mensagem de status */
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    background-color: #ff00ff; /* Botão rosa neon */
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8); /* Brilho neon no botão */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-button:hover {
-    background-color: #ff3399; /* Tom mais claro de rosa */
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.9); /* Efeito de brilho mais forte */
-}
-
-</style>
-
 <body>
+
+    <!-- Logo -->
+    <div class="logo">Velhaaa</div>
+
+    <!-- Container de Jogo -->
     <div class="game-container">
-        <h1>Jogo da Velha</h1>
-        <div id="board" class="board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <div id="status" class="status">Jogador X começa!</div>
-        <button onclick="resetGame()">Reiniciar Jogo</button>
+        <h2>Bem-vindo ao Velhaaa</h2>
+        <h3>O Classico Nunca sai do servidor!</h3>
+        <a href="tetris.html">Jogar Agora</a>
     </div>
-    <script src="velha.js"></script>
+
 </body>
 </html>

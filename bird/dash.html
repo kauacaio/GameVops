@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bird</title>
+    <title>Birds</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Reset básico */
@@ -14,109 +14,131 @@
             font-family: 'Orbitron', sans-serif;
         }
 
+        /* Fundo futurista */
         body {
+            height: 100vh;
+            background: linear-gradient(135deg, #2b2b2b, #000000, #003366);
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            background: #1c1c1c;
             color: #fff;
-            position: relative;
         }
 
-        /* Logo e texto */
-        .logo {
+        /* Efeito de partículas no fundo */
+        body::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4.5em;
-            font-weight: bold;
-            color: #00ff00;
-            text-shadow: 0 0 15px #00ff00;
-            animation: colorChange 4s infinite alternate;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent);
+            animation: moveBg 10s linear infinite;
         }
 
-        @keyframes colorChange {
-            0% { color: #00ff00; }
-            50% { color: #ff9900; }
-            100% { color: #ff00ff; }
+        @keyframes moveBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
         }
 
-        /* Estilo do quadro central */
-        .game-container {
+        /* Logo futurista com brilho 3D */
+        .logo {
+            font-size: 5em;
+            font-weight: 700;
+            color: #00ffcc;
             text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00ffcc, 0 0 40px #00ffcc, 0 0 80px #00ff00;
+            animation: glow 2s infinite alternate;
+            position: absolute;
+            top: 10%;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff00, 0 0 80px #00ff00; }
+            50% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff0099, 0 0 80px #ff0099; }
+            100% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff00, 0 0 80px #00ff00; }
+        }
+
+        /* Container de conteúdo */
+        .game-container {
             background: rgba(0, 0, 0, 0.8);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.5);
-            z-index: 1;
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
             width: 350px;
-            margin-top: 80px;
+            position: relative;
+            animation: containerGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Animação de brilho da caixa */
+        @keyframes containerGlow {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.7); }
+            100% { box-shadow: 0 0 60px rgba(0, 255, 255, 1); }
         }
 
         h2, h3 {
-            font-weight: 400;
-            color: #00ff00;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #00ffcc;
         }
 
+        /* Botões futuristas */
         .game-container a {
             display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            font-size: 1.3em;
-            color: #fff;
+            padding: 18px 35px;
+            font-size: 1.4em;
+            color: white;
             text-decoration: none;
-            background: linear-gradient(45deg, #ff9900, #ff00ff);
-            border-radius: 5px;
-            transition: background 0.4s ease, transform 0.3s ease;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff0066, #00b0ff);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-container a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffcc;
+            opacity: 0.3;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease-in-out;
         }
 
         .game-container a:hover {
-            background: linear-gradient(45deg, #00ff00, #ff9900);
             transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
         }
 
-        /* Animação da cobrinha */
-        .snake {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #00ff00;
-            border-radius: 50%;
-            animation: snakeMove 5s infinite linear;
+        .game-container a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
-
-        @keyframes snakeMove {
-            0% {
-                transform: translateX(-20vw) translateY(-20vh);
-            }
-            50% {
-                transform: translateX(80vw) translateY(50vh);
-            }
-            100% {
-                transform: translateX(-20vw) translateY(90vh);
-            }
-        }
-
     </style>
 </head>
 <body>
-    <!-- Logo -->
-    <div class="logo">Bird</div>
 
-    <!-- Conteúdo principal -->
+    <!-- Logo -->
+    <div class="logo">Birds</div>
+
+    <!-- Container de Jogo -->
     <div class="game-container">
-        <h2>Objetivo</h2>
-        <h3>Atravesse sem cair ou bater !</h3>
-        <a href="bird.html">Começar o Jogo</a>
+        <h2>Bem-vindo ao Birds</h2>
+        <h3>Vamos ver se você é bom em desviar!</h3>
+        <a href="bird.html">Jogar Agora</a>
     </div>
 
-    <!-- Cobrinha passando pela tela -->
-    <div class="snake" style="top: 20%; left: 10%;"></div>
-    <div class="snake" style="top: 50%; left: 70%;"></div>
-    <div class="snake" style="top: 80%; left: 30%;"></div>
-    <div class="snake" style="top: 10%; left: 80%;"></div>
 </body>
 </html>
