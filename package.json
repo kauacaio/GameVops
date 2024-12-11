@@ -2,9 +2,11 @@
   "name": "projeto",
   "version": "1.0.0",
   "main": "dashboard.js",
+  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "webpack serve --open --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,13 @@
     "url": "https://github.com/kaua-caio/Mario/issues"
   },
   "homepage": "https://github.com/kaua-caio/Mario#readme",
-  "description": ""
+  "dependencies": {
+    "phaser": "^3.60.0",
+    "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^4.0.0"
+  }
 }
