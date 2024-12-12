@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVops - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle, #050d21, #000);
+            color: #fff;
+            overflow: hidden;
+        }
+
+
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.7; }
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+     
+        header {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: #ffcc00;
+            z-index: 2;
+            animation: colorChange 5s ease-in-out infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: hsl(219, 55%, 57%); }
+            50% { color: #7ccfba; }
+            100% { color: #74ec69; }
+        }
+
+     
+        .holiday-message {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #ffcc00;
+            text-align: center;
+            opacity: 1;
+            animation: fadeOut 1s ease-out 59s forwards, colorChange 5s ease-in-out infinite;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+    
+        .holiday-button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(30%);
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            background-color: #002fff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .holiday-button:hover {
+            background-color: #02cc78;
+        }
+
+     
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+  
+    <header>
+        <h1>GameVops</h1>
+    </header>
+
+    
+    <div class="holiday-message">
+        <strong>Feliz Natal e um próspero Ano Novo!</strong>
+    </div>
+
+  
+    <a href="gamevops.html" class="holiday-button">Bora aproveitar o Fim do ano !</a>
+
+    <main>
+     
+    </main>
+
+    
+    <footer>
+        <p>&copy; 2024 GameVops. Todos os direitos reservados a GRUPOLIMA.</p>
+    </footer>
+
+    <script>
+       
+        setTimeout(() => {
+            const message = document.querySelector('.holiday-message');
+            if (message) {
+                message.style.display = 'none';
+            }
+        }, 60000);
+    </script>
+</body>
+</html>
