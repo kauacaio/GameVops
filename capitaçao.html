@@ -6,7 +6,6 @@
     <title>GameVops - Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-       
         * {
             margin: 0;
             padding: 0;
@@ -16,81 +15,111 @@
         html, body {
             height: 100%;
             font-family: 'Orbitron', sans-serif;
-            background: radial-gradient(circle, #050d21, #000);
+            background: radial-gradient(circle, #030A1A, #000);
             color: #fff;
             overflow: hidden;
+            position: relative;
         }
 
-
-
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.7; }
-        }
-
-        @keyframes blink {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
-        }
-
-     
         header {
             position: fixed;
-            top: 20%;
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 4rem;
-            color: #ffcc00;
+            font-size: 6rem;
+            color: #8ec9c5;
             z-index: 2;
-            animation: colorChange 5s ease-in-out infinite;
+            animation: colorChange 8s ease-in-out infinite, logoGlow 4s ease-in-out infinite;
         }
 
         @keyframes colorChange {
-            0% { color: hsl(219, 55%, 57%); }
-            50% { color: #7ccfba; }
-            100% { color: #74ec69; }
+            0% { color: #8ec9c5; }
+            25% { color: #bb99ff; }
+            50% { color: #f2c57f; }
+            75% { color: #9fdf9b; }
+            100% { color: #8ec9c5; }
         }
 
-     
+        /* Efeito de brilho suave na logo */
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px rgba(142, 201, 197, 0.3), 0 0 20px rgba(142, 201, 197, 0.4); }
+            50% { text-shadow: 0 0 20px rgba(142, 201, 197, 0.4), 0 0 40px rgba(142, 201, 197, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(142, 201, 197, 0.3), 0 0 20px rgba(142, 201, 197, 0.4); }
+        }
+
         .holiday-message {
             position: fixed;
             top: 40%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2rem;
-            color: #ffcc00;
             text-align: center;
-            opacity: 1;
-            animation: fadeOut 1s ease-out 59s forwards, colorChange 5s ease-in-out infinite;
         }
 
-        @keyframes fadeOut {
-            0% { opacity: 1; }
+        @keyframes disappear2024 {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(3) rotate(360deg);
+            }
+        }
+
+        @keyframes appear2025 {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(180deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .year {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #00ccff;
+            text-shadow: 0 0 20px #00ccff, 0 0 40px #0077ff;
+            display: inline-block;
+            animation: disappear2024 3s ease-in-out forwards;
+        }
+
+        .year.hidden {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .year.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            animation: appear2025 3s ease-out forwards;
+        }
+
+        .transition-message {
+            font-size: 3rem;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #00ffcc, 0 0 30px #00bbff;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
             100% { opacity: 0; }
         }
 
-    
-        .holiday-button {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(30%);
-            font-size: 1.5rem;
-            padding: 15px 30px;
-            background-color: #002fff;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .holiday-button:hover {
-            background-color: #02cc78;
-        }
-
-     
         footer {
             position: fixed;
             bottom: 0;
@@ -106,39 +135,115 @@
             font-size: 0.9rem;
         }
 
+        .holiday-button {
+            position: fixed;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            background-color: #8ec9c5;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-shadow: 0 0 8px #8ec9c5, 0 0 16px #8ec9c5;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+            animation: rgbGlow 6s ease-in-out infinite;
+            z-index: 5; /* Aumenta o z-index para garantir que o botão seja clicável */
+        }
+
+        @keyframes rgbGlow {
+            0% {
+                box-shadow: 0 0 10px rgba(142, 201, 197, 0.6), 0 0 20px rgba(142, 201, 197, 0.8);
+            }
+            25% {
+                box-shadow: 0 0 10px rgba(187, 153, 255, 0.6), 0 0 20px rgba(187, 153, 255, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 10px rgba(242, 197, 127, 0.6), 0 0 20px rgba(242, 197, 127, 0.8);
+            }
+            75% {
+                box-shadow: 0 0 10px rgba(159, 223, 155, 0.6), 0 0 20px rgba(159, 223, 155, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(142, 201, 197, 0.6), 0 0 20px rgba(142, 201, 197, 0.8);
+            }
+        }
+
+        .holiday-button:hover {
+            background-color: #bb99ff;
+            text-shadow: 0 0 10px #bb99ff, 0 0 20px #bb99ff;
+        }
+
+        /* Fundo com movimento tipo aurora boreal, com aumento discreto */
+        .aurora-boreal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ccff, #ffcc00);
+            background-size: 250% 250%; /* Aumenta um pouco o tamanho do gradiente */
+            animation: auroraAnimation 20s ease-in-out infinite;
+            opacity: 0.08; /* Aumentei a opacidade para tornar a aurora mais visível */
+            z-index: 1;
+        }
+
+        @keyframes auroraAnimation {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
     </style>
 </head>
 <body>
-  
+    <div class="aurora-boreal"></div>
+
     <header>
         <h1>GameVops</h1>
     </header>
 
-    
     <div class="holiday-message">
-        <strong>Feliz Natal e um próspero Ano Novo!</strong>
+        <div>
+            <span class="year visible" id="year">2024</span>
+        </div>
+        <div class="transition-message" id="transition-message">O nosso ano vem aí</div>
     </div>
 
-  
-    <a href="gamevops.html" class="holiday-button">Bora aproveitar o Fim do ano !</a>
+    <button class="holiday-button" onclick="location.href='gamevops.html'">Bora Aproveitar!</button>
 
-    <main>
-     
-    </main>
-
-    
     <footer>
-        <p>&copy; 2024 GameVops. Todos os direitos reservados a GRUPOLIMA.</p>
+        <p>&copy; <span id="footer-year">2024</span> GameVops. Todos os direitos reservados a GRUPOLIMA.</p>
     </footer>
 
     <script>
-       
+        const yearElement = document.getElementById('year');
+        const footerYear = document.getElementById('footer-year');
+        const transitionMessage = document.getElementById('transition-message');
+
         setTimeout(() => {
-            const message = document.querySelector('.holiday-message');
-            if (message) {
-                message.style.display = 'none';
-            }
-        }, 60000);
+            yearElement.classList.replace('visible', 'hidden');
+
+            setTimeout(() => {
+                transitionMessage.style.opacity = 1;
+
+                setTimeout(() => {
+                    transitionMessage.style.opacity = 0;
+
+                    setTimeout(() => {
+                        yearElement.textContent = '2025';
+                        footerYear.textContent = '2025';
+                        yearElement.classList.replace('hidden', 'visible');
+                    }, 500);
+
+                }, 5000);
+
+            }, 500);
+
+        }, 3000);
     </script>
 </body>
 </html>
