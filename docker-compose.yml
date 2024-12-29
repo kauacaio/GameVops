@@ -22,14 +22,49 @@ services:
     restart: always
 
   app:
-    image: nginx:alpine
+    image: /:alpine
     container_name: app
     labels:
       - "traefik.http.routers.app.rule=Host(`gamevops.tech`)"
       - "traefik.http.routers.app.entrypoints=websecure"
       - "traefik.http.routers.app.tls.certresolver=mytls"
     restart: always
-  command:
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
 
+  db:
+    image: postgres:14
+    container_name: gamevops_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: securepassword123
+      POSTGRES_DB: gamevopsdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    labels:
+      - "traefik.http.routers.db.rule=Host(`db.gamevops.tech`)"
+      - "traefik.http.routers.db.entrypoints=websecure"
+      - "traefik.http.routers.db.tls.certresolver=mytls"
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+    container_name: gamevops_backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASSWORD: securepassword123
+      DB_NAME: gamevopsdb
+    depends_on:
+      - db
+    labels:
+      - "traefik.http.routers.backend.rule=Host(`backend.gamevops.tech`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=mytls"
+    restart: always
+
+volumes:
+  db_data:
